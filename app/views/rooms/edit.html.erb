@@ -1,2 +1,46 @@
-<h1>Rooms#edit</h1>
-<p>Find me in app/views/rooms/edit.html.erb</p>
+<h1>施設編集</h1>
+
+<% if @room.errors.any? %>
+  <div>
+    <h2><%= @room.errors.count %>件のエラーがあります</h2>
+    <ul>
+      <% @room.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @room do |f| %>
+
+  <div>
+    <%= f.label :image, "施設画像" %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div>
+    <%= f.label :name, "施設名" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :description, "施設説明" %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <%= f.label :price, "料金" %>
+    <%= f.number_field :price %>
+  </div>
+
+  <div>
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div>
+    <%= f.submit "更新する" %>
+  </div>
+<% end %>
+
+<%= link_to "戻る", request.referer || root_path %>

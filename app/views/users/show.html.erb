@@ -1,11 +1,20 @@
-<h1>アカウントページ</h1>
+<h1>設定</h1>
 
-<div>
-  <p>メールアドレス</p>
-  <p><%= @user.email %></p>
-</div>
+<div class="account-card">
+  <h2>アカウント</h2>
 
-<div>
-  <p>パスワード</p>
-  <p>*********</p>
+  <div class="account-item">
+    <p>メールアドレス</p>
+    <p><%= @user.email %></p>
+  </div>
+
+  <div class="account-item">
+    <p>パスワード</p>
+    <p>*********</p>
+  </div>
+
+  <div class="account-actions">
+    <%= link_to "アカウントを編集する", edit_user_registration_path %>
+    <%= link_to "プロフィールを編集する", edit_profile_path %>
+  </div>
 </div>

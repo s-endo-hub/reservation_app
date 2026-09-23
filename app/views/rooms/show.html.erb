@@ -1,2 +1,36 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<div class="room-detail">
+  <div class="room-detail-image">
+    <% if @room.image.attached? %>
+      <%= image_tag @room.image %>
+    <% else %>
+      <%= image_tag "default_room.png" %>
+    <% end %>
+  </div>
+
+  <div class="room-detail-info">
+    <div>
+      <p>施設名</p>
+      <p><%= @room.name %></p>
+    </div>
+
+    <div>
+      <p>施設説明</p>
+      <p><%= @room.description %></p>
+    </div>
+
+    <div>
+      <p>料金</p>
+      <p><%= number_to_currency(@room.price, unit: "¥", format: "%u%n", precision: 0) %> / 泊</p>
+    </div>
+
+    <div>
+      <p>住所</p>
+      <p><%= @room.address %></p>
+    </div>
+
+    <div class="room-detail-actions">
+      <%= link_to "この施設を予約する", new_room_reservation_path(@room) %>
+      <%= link_to "戻る", request.referer || root_path %>
+    </div>
+  </div>
+</div>
