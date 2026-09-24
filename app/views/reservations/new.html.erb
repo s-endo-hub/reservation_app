@@ -1,0 +1,48 @@
+<h1>新規予約</h1>
+
+<div class="reservation-form">
+
+  <% if @reservation.errors.any? %>
+    <div class="form-errors">
+      <h2><%= @reservation.errors.count %>件のエラーがあります</h2>
+      <ul>
+        <% @reservation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="reservation-room-info">
+    <h2><%= @room.name %></h2>
+    <p><%= number_to_currency(@room.price, unit: "¥", format: "%u%n", precision: 0) %> / 泊</p>
+  </div>
+
+  <%= form_with model: @reservation,
+                url: room_reservations_path(@room),
+                method: :post,
+                data: { turbo: false } do |f| %>
+
+    <div class="form-field">
+      <%= f.label :checkin_at, "チェックイン" %>
+      <%= f.date_field :checkin_at %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :checkout_at, "チェックアウト" %>
+      <%= f.date_field :checkout_at %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :guest_count, "宿泊人数" %>
+      <%= f.number_field :guest_count, min: 1 %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "予約内容を確認する" %>
+      <%= link_to "施設詳細に戻る", room_path(@room) %>
+    </div>
+
+  <% end %>
+
+</div>

@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    attributes:
+      reservation:
+        checkin_at: "チェックイン"
+        checkout_at: "チェックアウト"
+        guest_count: "宿泊人数"

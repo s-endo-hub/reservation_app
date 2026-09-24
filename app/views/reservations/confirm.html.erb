@@ -1,0 +1,55 @@
+<h1>予約内容の確認</h1>
+
+<div class="reservation-confirm">
+
+  <div class="reservation-confirm-room">
+    <h2><%= @room.name %></h2>
+    <p><%= number_to_currency(@room.price, unit: "¥", format: "%u%n", precision: 0) %> / 泊</p>
+  </div>
+
+  <div class="reservation-confirm-info">
+
+    <div class="reservation-confirm-item">
+      <p>チェックイン</p>
+      <p><%= @reservation.checkin_at.strftime("%Y/%m/%d") %></p>
+    </div>
+
+    <div class="reservation-confirm-item">
+      <p>チェックアウト</p>
+      <p><%= @reservation.checkout_at.strftime("%Y/%m/%d") %></p>
+    </div>
+
+    <div class="reservation-confirm-item">
+      <p>宿泊人数</p>
+      <p><%= @reservation.guest_count %>人</p>
+    </div>
+
+    <div class="reservation-confirm-item">
+      <p>宿泊日数</p>
+      <p><%= @nights %>泊</p>
+    </div>
+
+  </div>
+
+  <div class="reservation-confirm-total">
+    <p>合計料金</p>
+    <p><%= number_to_currency(@total_price, unit: "¥", format: "%u%n", precision: 0) %></p>
+  </div>
+
+  <div class="reservation-confirm-actions">
+
+    <%= link_to "予約内容を修正する",
+                new_room_reservation_path(@room) %>
+
+    <%= button_to "予約を確定する",
+                  complete_room_reservation_path(@room),
+                  method: :post,
+                  params: {
+                    checkin_at: @reservation.checkin_at,
+                    checkout_at: @reservation.checkout_at,
+                    guest_count: @reservation.guest_count
+                  } %>
+
+  </div>
+
+</div>

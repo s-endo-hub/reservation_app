@@ -1,15 +1,603 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+/* ヘッダー */
+header {
+  height: 80px;
+  background-color: #1d1d3b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+.header-auth-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-auth-links a {
+  padding: 10px 18px;
+  color: white;
+  text-decoration: none;
+  border: 1px solid white;
+}
+
+.header-auth-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.header-auth-links a:last-child {
+  background-color: white;
+  color: #1d1d3b;
+}
+
+.header-auth-links a:last-child:hover {
+  opacity: 0.85;
+}
+
+/* Potepan Share */
+header > a {
+  color: white;
+  text-decoration: none;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+/* ユーザーメニュー */
+header details {
+  position: relative;
+}
+
+header summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  cursor: pointer;
+  list-style: none;
+}
+
+header summary::-webkit-details-marker {
+  display: none;
+}
+
+/* ユーザーアイコン */
+header summary img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ユーザーメニューの中身 */
+header details > div {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 180px;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+/* メニューのリンク */
+header details > div a {
+  display: block;
+  padding: 12px;
+  color: #333;
+  text-decoration: none;
+}
+
+header details > div a:hover {
+  background-color: #f5f5f5;
+}
+
+/* ログアウト */
+header details > div form {
+  margin: 0;
+}
+
+header details > div button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: white;
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+header details > div button:hover {
+  background-color: #f5f5f5;
+}
+
+header details > div hr {
+  margin: 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+/* 検索エリア */
+.search-box {
+  margin: 30px auto;
+  max-width: 900px;
+  padding: 25px;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+}
+
+.search-fields {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.search-fields > div {
+  flex: 1;
+}
+
+.search-fields label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.search-fields input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.search-fields input[type="submit"] {
+  padding: 12px 30px;
+  border: none;
+  background-color: #1d1d3b;
+  color: white;
+  cursor: pointer;
+}
+
+.search-fields input[type="submit"]:hover {
+  opacity: 0.8;
+}
+
+/* 施設一覧 */
+.room-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.room-card {
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.room-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.room-card p {
+  margin: 8px 0;
+}
+
+.room-card a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #1d1d3b;
+  color: white;
+  text-decoration: none;
+}
+
+.room-card a:hover {
+  opacity: 0.8;
+}
+/* 施設詳細 */
+.room-detail {
+  display: flex;
+  gap: 40px;
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.room-detail-image {
+  width: 45%;
+  flex-shrink: 0;
+}
+
+.room-detail-image img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
+.room-detail-info {
+  flex: 1;
+}
+
+.room-detail-info > div {
+  margin-bottom: 20px;
+}
+
+.room-detail-info p {
+  margin: 5px 0;
+}
+
+.room-detail-info p:first-child {
+  font-weight: bold;
+  color: #555;
+}
+
+.room-detail-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.room-detail-actions a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1d1d3b;
+  color: white;
+  text-decoration: none;
+}
+
+/* 施設登録・編集フォーム */
+.room-form {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 30px 40px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.form-field {
+  margin-bottom: 25px;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-field input[type="text"],
+.form-field input[type="number"],
+.form-field textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.form-actions input[type="submit"] {
+  padding: 10px 25px;
+  border: none;
+  background-color: #1d1d3b;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-actions a {
+  display: inline-block;
+  padding: 10px 25px;
+  background-color: #eee;
+  color: #333;
+  text-decoration: none;
+}
+
+/* フォームのエラーメッセージ */
+.form-errors {
+  margin-bottom: 25px;
+  padding: 15px 20px;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+}
+
+.form-errors h2 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.form-errors ul {
+  margin-bottom: 0;
+}
+
+/* 登録済み一覧 */
+.my-room-list {
+  max-width: 1100px;
+  margin: 30px auto;
+}
+
+.my-room-list-header,
+.my-room-row {
+  display: grid;
+  grid-template-columns: 140px 1.2fr 2fr 1fr 1fr 180px;
+  align-items: center;
+  gap: 20px;
+}
+
+.my-room-list-header {
+  padding: 15px 0;
+  border-bottom: 1px solid #333;
+  font-weight: bold;
+}
+
+.my-room-row {
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.my-room-row img {
+  width: 128px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.my-room-row a {
+  color: #333;
+  text-decoration: none;
+}
+
+.my-room-row a:hover {
+  text-decoration: underline;
+}
+
+.my-room-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.my-room-actions a {
+  padding: 8px 14px;
+  background-color: #eee;
+  text-decoration: none;
+}
+
+.my-room-actions a:hover {
+  background-color: #ddd;
+}
+
+.my-room-actions form {
+  margin: 0;
+}
+
+.my-room-actions button {
+  padding: 8px 14px;
+  border: none;
+  background-color: #fff;
+  color: #e33;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.my-room-actions button:hover {
+  background-color: #f5f5f5;
+}
+
+/* 予約フォーム */
+.reservation-form {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 30px 40px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.reservation-room-info {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.reservation-room-info h2 {
+  margin: 0 0 10px;
+}
+
+.reservation-room-info p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.reservation-form .form-field {
+  margin-bottom: 25px;
+}
+
+.reservation-form .form-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.reservation-form .form-field input[type="date"],
+.reservation-form .form-field input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.reservation-form .form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.reservation-form .form-actions input[type="submit"] {
+  padding: 10px 25px;
+  border: none;
+  background-color: #1d1d3b;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.reservation-form .form-actions input[type="submit"]:hover {
+  opacity: 0.8;
+}
+
+.reservation-form .form-actions a {
+  display: inline-block;
+  padding: 10px 25px;
+  background-color: #eee;
+  color: #333;
+  text-decoration: none;
+}
+
+.reservation-form .form-actions a:hover {
+  background-color: #ddd;
+}
+
+/* 予約内容の確認 */
+.reservation-confirm {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.reservation-confirm-room {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+
+.reservation-confirm-item,
+.reservation-confirm-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+.reservation-confirm-total {
+  margin-top: 10px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  font-weight: bold;
+}
+
+.reservation-confirm-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.reservation-confirm-actions a,
+.reservation-confirm-actions button {
+  padding: 10px 20px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.reservation-confirm-actions a {
+  background-color: #eee;
+  color: #333;
+}
+
+.reservation-confirm-actions button {
+  background-color: #1d1d3b;
+  color: white;
+}
+
+/* 予約一覧 */
+.reservation-list {
+  max-width: 1200px;
+  margin: 30px auto;
+}
+
+.reservation-list-header,
+.reservation-row {
+  display: grid;
+  grid-template-columns: 100px 1.2fr 2fr 1fr 1fr 1fr 1.3fr;
+  align-items: center;
+  gap: 15px;
+}
+
+.reservation-list-header {
+  padding: 15px 0;
+  border-bottom: 1px solid #333;
+  font-weight: bold;
+}
+
+.reservation-row {
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.reservation-row img {
+  width: 90px;
+  height: 65px;
+  object-fit: cover;
+}
+
+/* アカウント編集 */
+.account-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.account-actions a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1d1d3b;
+  color: white;
+  text-decoration: none;
+}
+
+.account-actions a:hover {
+  opacity: 0.8;
+}
+
+/* フラッシュメッセージ */
+.flash {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 12px 20px;
+  box-sizing: border-box;
+}
+
+.flash.notice {
+  background-color: #f0f7f0;
+  border: 1px solid #b8d8b8;
+  color: #2f5d2f;
+}
+
+.flash.alert {
+  background-color: #fff4f4;
+  border: 1px solid #e0b0b0;
+  color: #8b3333;
+}

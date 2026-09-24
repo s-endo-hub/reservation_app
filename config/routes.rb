@@ -1,14 +1,20 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :users
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  get "/rooms/my_rooms", to: "rooms#my_rooms", as: :my_rooms
 
-  # Render dynamic PWA files from app/views/pwa/*
-  get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
+  get "/rooms/:room_id/reservation/new", to: "reservations#new", as: :new_room_reservation
+  post "/rooms/:room_id/reservation", to: "reservations#create", as: :room_reservations
+  post "/rooms/:room_id/reservation/complete", to: "reservations#complete", as: :complete_room_reservation
+  get "/reservations", to: "reservations#index", as: :reservations
+  delete "/reservations/:id", to: "reservations#destroy", as: :reservation
+  
+  resources :rooms
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  root "rooms#index"
+
+  get "/users/show", to: "users#show", as: :users_show
+  get "/users/profile/edit", to: "users#edit_profile", as: :edit_profile
+  patch "/users/profile", to: "users#update_profile", as: :update_profile
+  
 end

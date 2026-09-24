@@ -1,0 +1,48 @@
+<div class="room-form">
+
+  <% if @room.errors.any? %>
+    <div class="form-errors">
+      <h2><%= @room.errors.count %>件のエラーがあります</h2>
+      <ul>
+        <% @room.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with model: @room do |f| %>
+
+    <div class="form-field">
+      <%= f.label :image, "施設画像" %>
+      <%= f.file_field :image %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :name, "施設名" %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :description, "施設説明" %>
+      <%= f.text_area :description, rows: 5 %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :price, "料金（1泊）" %>
+      <%= f.number_field :price, min: 1 %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :address, "住所" %>
+      <%= f.text_field :address %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "登録する" %>
+      <%= link_to "戻る", rooms_path %>
+    </div>
+
+  <% end %>
+
+</div>

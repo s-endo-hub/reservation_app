@@ -1,0 +1,59 @@
+<h1>登録済み一覧</h1>
+
+<div class="my-room-header">
+  <%= link_to "施設を登録する", new_room_path %>
+</div>
+
+<% if @rooms.any? %>
+  <div class="my-room-list">
+    <div class="my-room-list-header">
+      <span>画像</span>
+      <span>施設名</span>
+      <span>紹介文</span>
+      <span>料金</span>
+      <span>登録日</span>
+      <span>操作</span>
+    </div>
+
+    <% @rooms.each do |room| %>
+      <div class="my-room-row">
+
+        <div>
+          <% if room.image.attached? %>
+            <%= image_tag room.image %>
+          <% else %>
+            <%= image_tag "default_room.png" %>
+          <% end %>
+        </div>
+
+        <div>
+          <%= link_to room.name, room_path(room) %>
+        </div>
+
+        <div>
+          <%= room.description %>
+        </div>
+
+        <div>
+          <%= number_to_currency(room.price, unit: "¥", format: "%u%n", precision: 0) %>～
+        </div>
+
+        <div>
+          <%= room.created_at.strftime("%Y/%m/%d") %>
+        </div>
+
+        <div class="my-room-actions">
+          <%= link_to "編集", edit_room_path(room) %>
+
+          <%= button_to "施設を削除",
+                        room_path(room),
+                        method: :delete,
+                        data: { turbo_confirm: "施設を削除しますか？" } %>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>登録した施設はありません。</p>
+<% end %>
